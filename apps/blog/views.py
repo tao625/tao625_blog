@@ -76,7 +76,7 @@ class DetailView(generic.DetailView):
                 'markdown.extensions.codehilite',
                 TocExtension(slugify=slugify),
             ])
-            cache.set(md_key, md, 60 * 60 * 12)
+            # cache.set(md_key, md, 60 * 60 * 12)
         obj.body = md.convert(obj.body)
         obj.toc = md.toc
         return obj

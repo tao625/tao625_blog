@@ -91,7 +91,7 @@ AUTHENTICATION_BACKENDS = (
 
 # allauth需要的配置
 # 当出现"SocialApp matching query does not exist"这种报错的时候就需要更换这个ID
-SITE_ID = 2
+SITE_ID = 3
 
 # 设置登录和注册成功后重定向的页面，默认是/accounts/profile/
 LOGIN_REDIRECT_URL = "/"
@@ -211,9 +211,9 @@ REST_FRAMEWORK = {
 
 # 配置数据库
 MYSQL_HOST = os.getenv('IZONE_MYSQL_HOST', '127.0.0.1')
-MYSQL_NAME = os.getenv('IZONE_MYSQL_NAME', 'izone')
+MYSQL_NAME = os.getenv('IZONE_MYSQL_NAME', 'izone_test')
 MYSQL_USER = os.getenv('IZONE_MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', 'python')
+MYSQL_PASSWORD = os.getenv('IZONE_MYSQL_PASSWORD', '1234')
 MYSQL_PORT = os.getenv('IZONE_MYSQL_PORT', 3306)
 
 DATABASES = {
@@ -229,18 +229,18 @@ DATABASES = {
 }
 
 # 使用django-redis缓存页面，缓存配置如下：
-REDIS_HOST = os.getenv('IZONE_REDIS_HOST', '127.0.0.1')
-REDIS_PORT = os.getenv('IZONE_REDIS_PORT', 6379)
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{}:{}".format(REDIS_HOST, REDIS_PORT),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
+# REDIS_HOST = os.getenv('IZONE_REDIS_HOST', '127.0.0.1')
+# REDIS_PORT = os.getenv('IZONE_REDIS_PORT', 6379)
+#
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://{}:{}".format(REDIS_HOST, REDIS_PORT),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
 
 # 配置管理邮箱，服务出现故障会收到到邮件，环境变量值的格式：name|test@test.com 多组用户用英文逗号隔开
 ADMINS = []
@@ -262,9 +262,10 @@ EMAIL_USE_SSL = os.getenv('IZONE_EMAIL_USE_SSL', 'True').upper() == 'TRUE'
 DEFAULT_FROM_EMAIL = os.getenv('IZONE_DEFAULT_FROM_EMAIL', 'TendCode博客 <your-email-address>')
 
 # 网站默认设置和上下文信息
-SITE_END_TITLE = os.getenv('IZONE_SITE_END_TITLE', 'izone')
+SITE_END_TITLE = os.getenv('IZONE_SITE_END_TITLE', 'Tao625')
 SITE_DESCRIPTION = os.getenv('IZONE_SITE_DESCRIPTION', 'izone 是一个使用 Django+Bootstrap4 搭建的个人博客类型网站')
 SITE_KEYWORDS = os.getenv('IZONE_SITE_KEYWORDS', 'izone,Django博客,个人博客')
+WEB_NAME = os.getenv('IZONE_WEB_NAME', '似水年华梦')
 
 # 个性化设置，非必要信息
 # 个人 Github 地址
@@ -278,4 +279,4 @@ MY_SITE_VERIFICATION = os.getenv('IZONE_SITE_VERIFICATION', '')
 # 使用 http 还是 https （sitemap 中的链接可以体现出来）
 PROTOCOL_HTTPS = os.getenv('IZONE_PROTOCOL_HTTPS', 'HTTP').lower()
 # hao.tendcode.com
-HAO_FLAG = os.getenv('IZONE_HAO_FLAG', 'False').upper() == 'TRUE'
+HAO_FLAG = os.getenv('IZONE_HAO_FLAG', 'True').upper() == 'TRUE'
