@@ -280,3 +280,4 @@ MY_SITE_VERIFICATION = os.getenv('IZONE_SITE_VERIFICATION', '')
 PROTOCOL_HTTPS = os.getenv('IZONE_PROTOCOL_HTTPS', 'HTTP').lower()
 # hao.tendcode.com
 HAO_FLAG = os.getenv('IZONE_HAO_FLAG', 'True').upper() == 'TRUE'
+HAO_WEB_URL = os.getenv('IZONE_WEB_URL', 'https://www.moulem.com/')
