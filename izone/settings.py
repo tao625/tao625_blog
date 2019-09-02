@@ -229,18 +229,18 @@ DATABASES = {
 }
 
 # 使用django-redis缓存页面，缓存配置如下：
-# REDIS_HOST = os.getenv('IZONE_REDIS_HOST', '127.0.0.1')
-# REDIS_PORT = os.getenv('IZONE_REDIS_PORT', 6379)
-#
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://{}:{}".format(REDIS_HOST, REDIS_PORT),
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
+REDIS_HOST = os.getenv('IZONE_REDIS_HOST', '127.0.0.1')
+REDIS_PORT = os.getenv('IZONE_REDIS_PORT', 6379)
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://{}:{}".format(REDIS_HOST, REDIS_PORT),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 # 配置管理邮箱，服务出现故障会收到到邮件，环境变量值的格式：name|test@test.com 多组用户用英文逗号隔开
 ADMINS = []
