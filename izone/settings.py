@@ -269,7 +269,7 @@ WEB_NAME = os.getenv('IZONE_WEB_NAME', '似水年华梦')
 
 # 个性化设置，非必要信息
 # 个人 Github 地址
-MY_GITHUB = os.getenv('IZONE_GITHUB', 'https://github.com/Hopetree')
+MY_GITHUB = os.getenv('IZONE_GITHUB', 'https://github.com/tao625')
 # 工信部备案信息
 BEIAN = os.getenv('IZONE_BEIAN', '网站备案信息')
 # 站长统计（友盟）
