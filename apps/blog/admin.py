@@ -3,6 +3,24 @@ from .models import (Article, Tag, Category, Timeline,
                      Carousel, Silian, Keyword, FriendLink,
                      AboutBlog)
 
+# 文章置頂
+def make_article_top(self, request, queryset):
+    for obj in queryset:
+        is_top = obj.is_top
+        if not is_top:
+            obj.is_top = "True"
+            obj.save(update_fields=["is_top"])
+make_article_top.short_description = '置顶文章'
+
+# 取消文章置頂
+def cancel_article_top(self, request, queryset):
+    for obj in queryset:
+        is_top = obj.is_top
+        if is_top:
+            obj.is_top = "False"
+            obj.save(update_fields=['is_top'])
+cancel_article_top.short_description = '取消置顶'
+
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
@@ -20,9 +38,14 @@ class ArticleAdmin(admin.ModelAdmin):
     # 激活过滤器，这个很有用
     list_filter = ('create_date', 'category', 'is_top')
 
+    # 增加文章关键字搜索
+    search_fields = ('title',)
+
     list_per_page = 50  # 控制每页显示的对象数量，默认是100
 
     filter_horizontal = ('tags', 'keywords')  # 给多选增加一个左右添加的框
+
+    actions = [make_article_top, cancel_article_top]  # 自定義action
 
     # 限制用户权限，只能看到自己编辑的文章
     def get_queryset(self, request):
@@ -96,3 +119,6 @@ class AboutBlogAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return None
+
+
+
