@@ -19,5 +19,6 @@ def settings_info(request):
         'site_verification': settings.MY_SITE_VERIFICATION,
         'site_url': site_full_url(),
         'hao_flag': settings.HAO_FLAG,
-        'hao_web_url': settings.HAO_WEB_URL
+        'hao_web_url': settings.HAO_WEB_URL,
+        'jupyter_notebook_url': settings.JUPYTER_NOTEBOOK_URL
     }

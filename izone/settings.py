@@ -103,7 +103,7 @@ ACCOUNT_EMAIL_VERIFICATION = os.getenv('IZONE_ACCOUNT_EMAIL_VERIFICATION', 'none
 # 登录方式，选择用户名或者邮箱都能登录
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 # 设置用户注册的时候必须填写邮箱地址
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 # 登出直接退出，不用确认
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -281,3 +281,5 @@ PROTOCOL_HTTPS = os.getenv('IZONE_PROTOCOL_HTTPS', 'HTTP').lower()
 # hao.tendcode.com
 HAO_FLAG = os.getenv('IZONE_HAO_FLAG', 'True').upper() == 'TRUE'
 HAO_WEB_URL = os.getenv('IZONE_WEB_URL', 'https://www.moulem.com/')
+# jupyter-notebook 设置
+JUPYTER_NOTEBOOK_URL = os.getenv('JUPYTER_NOTEBOOK_URL', 'http://www.tao625.com:8888')

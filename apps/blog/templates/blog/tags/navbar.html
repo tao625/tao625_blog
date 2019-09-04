@@ -33,6 +33,11 @@
                 <a class="nav-link py-md-3" href="{% url 'api:api-root' %}" target="_blank"><i class="fa fa-key mr-1"></i>API</a>
             </li>
             {% endif %}
+            {% if request.user.is_superuser %}
+            <li class="nav-item mr-2">
+                <a class="nav-link py-md-3" href={{ jupyter_notebook_url }} target="_blank"><i class="fa fa-key mr-1"></i>Jupyter Notebook</a>
+            </li>
+            {% endif %}
             <li class="nav-item mr-2 ">
                 {% url 'blog:about' as about_url %}
                 <a class="nav-link py-md-3 {% if request.path == about_url %}active{% endif %}" href="{{ about_url }}"><i class="fa fa-anchor mr-1"></i>关于</a>
