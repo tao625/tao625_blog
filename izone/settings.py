@@ -91,7 +91,7 @@ AUTHENTICATION_BACKENDS = (
 
 # allauth需要的配置
 # 当出现"SocialApp matching query does not exist"这种报错的时候就需要更换这个ID
-SITE_ID = 3
+SITE_ID = 4
 
 # 设置登录和注册成功后重定向的页面，默认是/accounts/profile/
 LOGIN_REDIRECT_URL = "/"
@@ -282,4 +282,4 @@ PROTOCOL_HTTPS = os.getenv('IZONE_PROTOCOL_HTTPS', 'HTTP').lower()
 HAO_FLAG = os.getenv('IZONE_HAO_FLAG', 'True').upper() == 'TRUE'
 HAO_WEB_URL = os.getenv('IZONE_WEB_URL', 'https://www.moulem.com/')
 # jupyter-notebook 设置
-JUPYTER_NOTEBOOK_URL = os.getenv('JUPYTER_NOTEBOOK_URL', 'http://www.tao625.com:8888')
+JUPYTER_NOTEBOOK_URL = os.getenv('JUPYTER_NOTEBOOK_URL', '')
