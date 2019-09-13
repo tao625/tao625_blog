@@ -26,6 +26,10 @@ class ArchiveView(generic.ListView):
     context_object_name = 'articles'
     paginate_by = 200
     paginate_orphans = 50
+    
+    def get_queryset(self):
+        queryset = super(ArchiveView, self).get_queryset()
+        return queryset.filter(is_secret=False)
 
 
 class IndexView(generic.ListView):
@@ -40,6 +44,10 @@ class IndexView(generic.ListView):
         if sort == 'v':
             return ('-views', '-update_date', '-id')
         return ('-is_top', '-create_date')
+
+    def get_queryset(self):
+        queryset = super(IndexView, self).get_queryset()
+        return queryset.filter(is_secret=False)
 
 
 class DetailView(generic.DetailView):
@@ -76,7 +84,7 @@ class DetailView(generic.DetailView):
                 'markdown.extensions.codehilite',
                 TocExtension(slugify=slugify),
             ])
-            # cache.set(md_key, md, 60 * 60 * 12)
+            cache.set(md_key, md, 60 * 60 * 12)
         obj.body = md.convert(obj.body)
         obj.toc = md.toc
         return obj
@@ -99,7 +107,7 @@ class CategoryView(generic.ListView):
     def get_queryset(self, **kwargs):
         queryset = super(CategoryView, self).get_queryset()
         cate = get_object_or_404(Category, slug=self.kwargs.get('slug'))
-        return queryset.filter(category=cate)
+        return queryset.filter(category=cate, is_secret=False)
 
     def get_context_data(self, **kwargs):
         context_data = super(CategoryView, self).get_context_data()
@@ -126,7 +134,7 @@ class TagView(generic.ListView):
     def get_queryset(self, **kwargs):
         queryset = super(TagView, self).get_queryset()
         tag = get_object_or_404(Tag, slug=self.kwargs.get('slug'))
-        return queryset.filter(tags=tag)
+        return queryset.filter(tags=tag, is_secret=True)
 
     def get_context_data(self, **kwargs):
         context_data = super(TagView, self).get_context_data()

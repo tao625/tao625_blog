@@ -78,6 +78,7 @@ class Article(models.Model):
     views = models.IntegerField('阅览量', default=0)
     slug = models.SlugField(unique=True)
     is_top = models.BooleanField('置顶', default=False)
+    is_secret = models.BooleanField('私密', default=False)   # 文章是否私密
 
     category = models.ForeignKey(Category, verbose_name='文章分类')
     tags = models.ManyToManyField(Tag, verbose_name='标签')
@@ -110,7 +111,6 @@ class Article(models.Model):
 
     def get_next(self):
         return Article.objects.filter(id__gt=self.id).order_by('id').first()
-
 
 # 时间线
 class Timeline(models.Model):
