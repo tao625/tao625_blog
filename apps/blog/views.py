@@ -5,6 +5,7 @@ from django.conf import settings
 from .models import Article, Tag, Category, Timeline, Silian, AboutBlog
 from .utils import site_full_url
 from django.core.cache import cache
+from django.db.models import Q
 
 from markdown.extensions.toc import TocExtension  # 锚点的拓展
 import markdown
@@ -26,7 +27,7 @@ class ArchiveView(generic.ListView):
     context_object_name = 'articles'
     paginate_by = 200
     paginate_orphans = 50
-    
+
     def get_queryset(self):
         queryset = super(ArchiveView, self).get_queryset()
         return queryset.filter(is_secret=False)
@@ -134,7 +135,7 @@ class TagView(generic.ListView):
     def get_queryset(self, **kwargs):
         queryset = super(TagView, self).get_queryset()
         tag = get_object_or_404(Tag, slug=self.kwargs.get('slug'))
-        return queryset.filter(tags=tag, is_secret=True)
+        return queryset.filter(Q(tags=tag) & Q(is_secret=False))
 
     def get_context_data(self, **kwargs):
         context_data = super(TagView, self).get_context_data()
