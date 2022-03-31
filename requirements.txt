@@ -33,3 +33,4 @@ urllib3==1.22
 user-agent==0.1.9
 webencodings==0.5.1
 Whoosh==2.7.4
+pandas
