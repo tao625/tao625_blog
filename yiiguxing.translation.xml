@@ -1,0 +1,30 @@
+<application>
+  <component name="AppStorage">
+    <option name="newTranslationDialogWidth" value="596" />
+    <option name="newTranslationDialogX" value="708" />
+    <option name="newTranslationDialogY" value="444" />
+    <histories>
+      <item value="process add" />
+      <item value="Metaclass for defining Abstract Base Classes (ABCs). Use this metaclass to create an ABC. An ABC can be subclassed directly, and then acts as a mix-in class. You can also register unrelated concrete classes (even built-in classes) and unrelated ABCs as 'virtual subclasses' -- these and their descendants will be considered subclasses of the registering ABC by the built-in issubclass() function, but the registering ABC won't show up in their MRO (Method Resolution Order) nor will method implementations defined by the registering ABC be callable (not even via super())" />
+      <item value="Helper class that provides a standard way to create an ABC using inheritance" />
+      <item value="quiet" />
+      <item value="Click is a simple Python module inspired by the stdlib optparse to make writing command line scripts fun. Unlike other modules, it's based around a simple API that does not come with too much magic and is composable." />
+      <item value="A simple Python debugger and profiler that can generate animated visualizations of program flow." />
+      <item value="visualizations" />
+      <item value="profiler" />
+    </histories>
+    <option name="languageScores">
+      <map>
+        <entry key="CHINESE" value="6" />
+        <entry key="ENGLISH" value="7" />
+        <entry key="DANISH" value="1" />
+      </map>
+    </option>
+  </component>
+  <component name="Cache">
+    <option name="lastTrimTime" value="1649570034929" />
+  </component>
+  <component name="Settings">
+    <option name="translateDocumentation" value="true" />
+  </component>
+</application>
