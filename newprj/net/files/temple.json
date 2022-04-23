@@ -1,0 +1,5 @@
+{
+    "name": "dan",
+    "ip": "#ip",
+    "port": "$pid"
+}
