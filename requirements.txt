@@ -1,5 +1,5 @@
 # Django 核心框架
-Django==4.2.29
+Django==4.2.30
 
 # 后台管理界面 (已移除，使用原生 admin)
 # bootstrap-admin 不再兼容 Django 4.2
