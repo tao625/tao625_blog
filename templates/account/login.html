@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+{% load static blog_tags %}
+
+{% block metas %}
+<meta name="description" content="登录{{ site_end_title }}，开始分享和交流">
+<meta name="keywords" content="登录,博客">
+{% endblock %}
+
+{% block top-file %}
+<link href="{% static 'blog/css/account.css' %}?v=20240419" rel="stylesheet">
+{% endblock %}
+
+{% block base_content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="{% static 'blog/img/logo.svg' %}" alt="似水年华" height="50">
+            <h2>欢迎回来</h2>
+            <p>登录后可发表评论和管理文章</p>
+        </div>
+
+        <form class="auth-form" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_login">用户名或邮箱</label>
+                <input type="text" name="login" placeholder="请输入用户名或邮箱" class="form-control" id="id_login" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password">密码</label>
+                <input type="password" name="password" placeholder="请输入密码" class="form-control" id="id_password" autocomplete="current-password" required>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="remember" id="id_remember">
+                <label for="id_remember">记住我</label>
+            </div>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <button type="submit" class="btn-primary">登 录</button>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{% url 'account_reset_password' %}" class="forgot-password">忘记密码？</a>
+            <span class="divider">|</span>
+            <a href="{% url 'account_signup' %}" class="signup-link">注册新账号</a>
+        </div>
+
+        <div class="social-login">
+            <div class="social-login-title">
+                <span>其他方式登录</span>
+            </div>
+            <div class="social-login-btns">
+                {% get_request_param request 'next' as next_url %}
+                <a href="/accounts/github/login/?next={{ next_url }}" class="social-btn github" title="GitHub登录">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="/accounts/weibo/login/?next={{ next_url }}" class="social-btn weibo" title="微博登录">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end_file %}
+{% endblock %}

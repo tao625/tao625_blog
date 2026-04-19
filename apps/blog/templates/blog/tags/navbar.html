@@ -1,0 +1,15 @@
+{% load static oauth_tags comment_tags %}
+<nav class="navbar navbar-expand-md bg-white fixed-top blog-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'blog:index' %}">
+            <img src="{% static 'blog/img/logo.svg' %}" alt="似水年华" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- 导航链接已移至左侧边栏 -->
+        </div>
+    </div>
+</nav>

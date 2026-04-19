@@ -1,0 +1,65 @@
+# Django 核心框架
+Django==4.2.29
+
+# 后台管理界面 (已移除，使用原生 admin)
+# bootstrap-admin 不再兼容 Django 4.2
+
+# 用户认证和社交登录
+django-allauth==0.63.6
+defusedxml==0.7.1
+
+# RESTful API
+djangorestframework==3.15.2
+
+# 数据库
+PyMySQL==1.1.1
+
+# 缓存
+django-redis==5.4.0
+redis==5.0.1
+
+# 全文搜索
+django-haystack==3.3.0
+Whoosh==2.7.4
+jieba==0.42.1
+
+# 表单和样式
+django-crispy-forms==2.1
+crispy-bootstrap4==2024.1
+
+# 图片处理
+django-imagekit==5.0.0
+Pillow==10.4.0
+pilkit==3.0
+
+# Markdown 处理
+Markdown==3.6
+Pygments==2.18.0
+
+# 网络请求
+requests==2.32.3
+certifi==2024.7.4
+chardet==5.2.0
+idna==3.7
+urllib3==2.2.2
+
+# HTML 处理
+bleach==6.1.0
+html5lib==1.1
+webencodings==0.5.1
+six==1.16.0
+
+# 其他工具
+emoji==2.12.1
+user-agent==0.1.9
+django-appconf==1.0.6
+pytz==2024.1
+
+# 部署
+gunicorn==22.0.0
+
+# 数据处理 (可选，需要编译环境)
+# pandas==2.2.2
+
+# 安全更新
+olefile==0.47

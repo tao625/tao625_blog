@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% load static blog_tags %}
+
+{% block metas %}
+<meta name="description" content="注册{{ site_end_title }}，加入我们">
+<meta name="keywords" content="注册,博客">
+{% endblock %}
+
+{% block top-file %}
+<link href="{% static 'blog/css/account.css' %}?v=20240419" rel="stylesheet">
+{% endblock %}
+
+{% block base_content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="{% static 'blog/img/logo.svg' %}" alt="似水年华" height="50">
+            <h2>加入我们</h2>
+            <p>创建账号，开始分享你的故事</p>
+        </div>
+
+        <form class="auth-form" method="POST" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">用户名</label>
+                <input type="text" name="username" placeholder="请输入用户名" class="form-control" id="id_username" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="id_email">邮箱</label>
+                <input type="email" name="email" placeholder="请输入邮箱" class="form-control" id="id_email" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password1">密码</label>
+                <input type="password" name="password1" placeholder="请输入密码" class="form-control" id="id_password1" autocomplete="new-password" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password2">确认密码</label>
+                <input type="password" name="password2" placeholder="请再次输入密码" class="form-control" id="id_password2" autocomplete="new-password" required>
+            </div>
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <button type="submit" class="btn-primary">注 册</button>
+        </form>
+
+        <div class="auth-footer">
+            <span>已有账号？</span>
+            <a href="{% url 'account_login' %}" class="signup-link">立即登录</a>
+        </div>
+
+        <div class="social-login">
+            <div class="social-login-title">
+                <span>其他方式注册</span>
+            </div>
+            <div class="social-login-btns">
+                {% get_request_param request 'next' as next_url %}
+                <a href="/accounts/github/login/?next={{ next_url }}" class="social-btn github" title="GitHub登录">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="/accounts/weibo/login/?next={{ next_url }}" class="social-btn weibo" title="微博登录">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end_file %}
+{% endblock %}
