@@ -41,7 +41,7 @@ requests==2.32.3
 certifi==2024.7.4
 chardet==5.2.0
 idna==3.7
-urllib3==2.2.2
+urllib3==2.6.3
 
 # HTML 处理
 bleach==6.1.0
