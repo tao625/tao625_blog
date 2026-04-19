@@ -34,7 +34,7 @@ pilkit==3.0
 
 # Markdown 处理
 Markdown==3.6
-Pygments==2.18.0
+Pygments==2.20.0
 
 # 网络请求
 requests==2.32.3
