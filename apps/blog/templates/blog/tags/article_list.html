@@ -13,7 +13,7 @@
     <p class="article-summary">{{ article.summary }}</p>
     <div class="article-tags">
         {% for tag in article.tags.all %}
-        <a class="tag-item" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        <a class="tag-item" href="{{ tag.get_absolute_url }}" data-tag="{{ tag.name }}">{{ tag.name }}</a>
         {% endfor %}
     </div>
     <div class="article-footer">

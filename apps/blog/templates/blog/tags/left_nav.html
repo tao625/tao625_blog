@@ -15,3 +15,41 @@
     <i class="fa fa-info-circle"></i>
     <span>关于</span>
 </a>
+<button class="left-nav-item" id="leftThemeToggle" title="切换主题">
+    <i class="fa fa-moon-o" id="leftThemeIcon"></i>
+    <span>主题</span>
+</button>
+<script>
+(function() {
+    var toggleBtn = document.getElementById('leftThemeToggle');
+    var icon = document.getElementById('leftThemeIcon');
+    var html = document.documentElement;
+
+    function setTheme(isDark) {
+        if (isDark) {
+            html.setAttribute('data-theme', 'dark');
+            icon.className = 'fa fa-moon-o';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            html.setAttribute('data-theme', 'light');
+            icon.className = 'fa fa-sun-o';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // 同步图标状态
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        icon.className = 'fa fa-sun-o';
+    } else {
+        icon.className = 'fa fa-moon-o';
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            var isDark = html.getAttribute('data-theme') !== 'light';
+            setTheme(!isDark);
+        });
+    }
+})();
+</script>
