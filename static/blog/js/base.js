@@ -1,11 +1,45 @@
-// 深色主题滚动行为初始化
-document.addEventListener('DOMContentLoaded', function() {
-    // 导航栏Headroom初始化已在base.html中通过jQuery执行
-
-    // 响应式移动端菜单关闭
-    $('.navbar-collapse .nav-link').on('click', function() {
-        if ($('.navbar-collapse').hasClass('show')) {
-            $('.navbar-toggler').trigger('click');
-        }
-    });
+//bootstrap4 tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+//回到顶部
+$(window).scroll(function(){
+    $('#to-top').hide();
+    if ($(window).scrollTop()>=600){
+        $('#to-top').show();
+    };
+});
+$("#to-top").click(function () {
+        var speed=400;//滑动的速度
+        $('body,html').animate({ scrollTop: 0 }, speed);
+        return false;
+ });
+//标题栏鼠标滑过显示下拉
+$(function() {
+	var $dropdownLi = $('ul.navbar-nav > li.dropdown');
+	$dropdownLi.mouseover(function() {
+		$(this).addClass('show');
+		$(this).children('a.dropdown-toggle').attr('aria-expanded', 'true');
+		$(this).children('div.dropdown-menu').addClass('show')
+	}).mouseout(function() {
+		$(this).removeClass('show');
+		$(this).children('a.dropdown-toggle').attr('aria-expanded', 'false');
+		$(this).children('div.dropdown-menu').removeClass('show')
+	})
+});
+//锚点平滑移动到指定位置
+function TOC_FUN(A) {
+	$(A).click(function() {
+		$(A).css("color", "#0099ff");
+		$(this).css("color", "red");
+		$('html, body').animate({
+			scrollTop: $($.attr(this, 'href')).offset().top - 55
+		}, 500);
+		return false
+	})
+}
+// 确保 DOM 加载完毕后执行
+$(document).ready(function() {
+	TOC_FUN('.toc a');
+	TOC_FUN('.to-com');
 });
