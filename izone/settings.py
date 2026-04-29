@@ -189,7 +189,10 @@ USE_TZ = False  # 关闭国际时间，不然数据库报错
 
 # 静态文件收集
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # 媒体文件收集
 MEDIA_URL = '/media/'
