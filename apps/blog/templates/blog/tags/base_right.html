@@ -60,7 +60,9 @@
     <div class="friends-list">
         {% for friend in friends %}
         <div class="friend-item">
-            <img src="{{ friend.avatar }}" alt="{{ friend.name }}">
+            <a href="{{ friend.link }}" target="_blank" class="friend-icon">
+                <i class="fa fa-globe"></i>
+            </a>
             <a href="{{ friend.link }}" target="_blank">{{ friend.name }}</a>
         </div>
         {% endfor %}
