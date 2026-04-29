@@ -1,27 +1,17 @@
-{% load blog_tags %}
-{% url 'blog:index' as index_url %}
-{% url 'blog:archive' as archive_url %}
-{% url 'blog:about' as about_url %}
-
-<a href="{{ index_url }}" class="left-nav-item {% if request.path == index_url %}active{% endif %}" title="首页">
+{% load static %}
+<a class="left-nav-item{% if request.path == '/' %} active{% endif %}" href="{% url 'blog:index' %}" title="首页">
     <i class="fa fa-home"></i>
     <span>首页</span>
 </a>
-
-<a href="{{ archive_url }}" class="left-nav-item {% if request.path == archive_url %}active{% endif %}" title="归档">
+<a class="left-nav-item{% if '/archive' in request.path %} active{% endif %}" href="{% url 'blog:archive' %}" title="归档">
     <i class="fa fa-archive"></i>
     <span>归档</span>
 </a>
-
-{% if tool_flag %}
-{% url 'tool:total' as tool_url %}
-<a href="{{ tool_url }}" class="left-nav-item {% if request.resolver_match.namespace == 'tool' %}active{% endif %}" title="工具">
-    <i class="fa fa-tools"></i>
-    <span>工具</span>
+<a class="left-nav-item" href="https://github.com/tao625" target="_blank" title="GitHub">
+    <i class="fa fa-github"></i>
+    <span>GitHub</span>
 </a>
-{% endif %}
-
-<a href="{{ about_url }}" class="left-nav-item {% if request.path == about_url %}active{% endif %}" title="关于">
+<a class="left-nav-item" href="{% url 'blog:about' %}" title="关于">
     <i class="fa fa-info-circle"></i>
     <span>关于</span>
 </a>

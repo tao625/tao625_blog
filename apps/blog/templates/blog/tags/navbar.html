@@ -1,15 +1,38 @@
 {% load static oauth_tags comment_tags %}
-<nav class="navbar navbar-expand-md bg-white fixed-top blog-navbar">
+<nav class="navbar navbar-expand-md bg-dark blog-navbar">
     <div class="container">
         <a class="navbar-brand" href="{% url 'blog:index' %}">
-            <img src="{% static 'blog/img/logo.svg' %}" alt="似水年华" height="40">
+            似水年华
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- 导航链接已移至左侧边栏 -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link{% if request.path == '/' %} active{% endif %}" href="{% url 'blog:index' %}">
+                        <i class="fa fa-home mr-1"></i>首页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if '/archive' in request.path %} active{% endif %}" href="{% url 'blog:archive' %}">
+                        <i class="fa fa-archive mr-1"></i>归档
+                    </a>
+                </li>
+                {% if tool_flag %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tool:total' %}">
+                        <i class="fa fa-tools mr-1"></i>工具
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link{% if '/about' in request.path %} active{% endif %}" href="{% url 'blog:about' %}">
+                        <i class="fa fa-info-circle mr-1"></i>关于
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
