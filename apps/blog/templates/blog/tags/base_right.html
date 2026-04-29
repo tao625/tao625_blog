@@ -1,4 +1,47 @@
-{% load blog_tags %}
+{% load blog_tags oauth_tags %}
+
+<!-- 登录/用户卡片 -->
+<div class="sidebar-card">
+    {% if user.is_authenticated %}
+    <div class="user-card">
+        <div class="user-avatar">
+            {% get_user_avatar_tag user %}
+        </div>
+        <div class="user-info">
+            <span class="user-name">{{ user.username }}</span>
+            <span class="user-role">{% if user.is_superuser %}管理员{% else %}用户{% endif %}</span>
+        </div>
+    </div>
+    <div class="user-actions">
+        <a href="{% url 'oauth:profile' %}" class="user-action-btn">
+            <i class="fa fa-user"></i>个人资料
+        </a>
+        {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}" class="user-action-btn">
+            <i class="fa fa-key"></i>后台管理
+        </a>
+        {% endif %}
+        <a href="{% url 'comment:notification' %}" class="user-action-btn">
+            <i class="fa fa-bell"></i>消息通知
+        </a>
+        <a href="{% url 'account_logout' %}" class="user-action-btn logout">
+            <i class="fa fa-sign-out"></i>退出登录
+        </a>
+    </div>
+    {% else %}
+    <div class="login-prompt">
+        <p>登录后可发表评论和管理文章</p>
+    </div>
+    <div class="login-buttons">
+        <a href="{% url 'account_login' %}?next={{ request.path }}" class="login-btn">
+            <i class="fa fa-sign-in mr-1"></i>登录
+        </a>
+        <a href="{% url 'account_signup' %}?next={{ request.path }}" class="register-btn">
+            <i class="fa fa-user-plus mr-1"></i>注册
+        </a>
+    </div>
+    {% endif %}
+</div>
 
 <!-- 快捷入口 -->
 <div class="sidebar-card">
@@ -42,7 +85,7 @@
     <h4 class="sidebar-card-title">
         <i class="fa fa-tags"></i>标签云
     </h4>
-    <div class="tag-cloud tag-cloud-ellipse">
+    <div class="tag-cloud">
         {% get_tag_list as tags %}
         {% for tag in tags %}
         <a class="tag-item" href="{{ tag.get_absolute_url }}" data-tag="{{ tag.name }}">{{ tag.name }}</a>
