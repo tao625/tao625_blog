@@ -337,10 +337,10 @@ a:hover { color: var(--primary-dark); }
 
 .tag-item {
     display: inline-block;
-    padding: 0.2rem 0.6rem;
+    padding: 0.3rem 0.9rem;
     color: white;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
     margin-right: 0.5rem;
     margin-top: 0.5rem;
 }
@@ -476,27 +476,33 @@ a:hover { color: var(--primary-dark); }
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background: var(--bg-card);
+}
+
+/* 椭圆标签云 */
+.tag-cloud-ellipse {
+    border-radius: 50%;
+    min-height: 120px;
+    align-items: center;
 }
 
 .tag-cloud .tag-item {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
     font-size: 0.85rem;
     color: white;
     transition: all var(--transition-fast);
 }
 
-/* 彩色标签 - 使用渐变背景 */
-.tag-cloud .tag-item:nth-child(5n+1) { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-.tag-cloud .tag-item:nth-child(5n+2) { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
-.tag-cloud .tag-item:nth-child(5n+3) { background: linear-gradient(135deg, #ec4899, #f472b6); }
-.tag-cloud .tag-item:nth-child(5n+4) { background: linear-gradient(135deg, #10b981, #34d399); }
-.tag-cloud .tag-item:nth-child(5n+5) { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
-
 .tag-cloud .tag-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
 }
 
 /* 文章详情页标签云 */
@@ -530,17 +536,29 @@ a:hover { color: var(--primary-dark); }
     overflow: hidden;
 }
 
-.friend-item img {
+.friend-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }
 
-.friend-item a {
-    color: var(--text-dark);
+.friend-item a:not(.friend-icon) {
+    color: var(--text-secondary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color var(--transition-fast);
+}
+
+.friend-item a:not(.friend-icon):hover {
+    color: var(--accent-purple);
 }
 
 /* ==================== 卡片内容区 ==================== */

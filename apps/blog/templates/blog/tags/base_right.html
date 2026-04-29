@@ -42,10 +42,10 @@
     <h4 class="sidebar-card-title">
         <i class="fa fa-tags"></i>标签云
     </h4>
-    <div class="tag-cloud">
+    <div class="tag-cloud tag-cloud-ellipse">
         {% get_tag_list as tags %}
         {% for tag in tags %}
-        <a class="tag-item" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        <a class="tag-item" href="{{ tag.get_absolute_url }}" data-tag="{{ tag.name }}">{{ tag.name }}</a>
         {% endfor %}
     </div>
 </div>

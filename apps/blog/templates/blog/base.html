@@ -13,9 +13,9 @@
     <meta name="keywords" content="{{ site_keywords }}">
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'blog/img/favicon.ico'%}" type="image/x-icon"/>
-    <link href="{% static 'blog/vendor/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'blog/vendor/font-awesome.min.css' %}" rel="stylesheet">
-    <script src="{% static 'blog/js/headroom.min.js'%}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.12.0/headroom.min.js"></script>
     <link href="{% static 'blog/css/base.css' %}" rel="stylesheet">
     {% block top-file %}{% endblock %}
 </head>
@@ -61,9 +61,8 @@
     </div>
 </footer>
 
-<script src="{% static 'blog/vendor/jquery.min.js' %}"></script>
-<script src="{% static 'blog/vendor/popper.min.js' %}"></script>
-<script src="{% static 'blog/vendor/bootstrap.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 $(function(){
     var myElement = document.querySelector(".blog-navbar");
@@ -72,6 +71,44 @@ $(function(){
 });
 </script>
 <script src="{% static 'blog/js/base.js'%}"></script>
+<script>
+// 标签颜色分配 - 根据标签名称哈希分配一致的颜色
+(function() {
+    const colors = [
+        'linear-gradient(135deg, #8b5cf6, #a78bfa)',
+        'linear-gradient(135deg, #3b82f6, #60a5fa)',
+        'linear-gradient(135deg, #ec4899, #f472b6)',
+        'linear-gradient(135deg, #10b981, #34d399)',
+        'linear-gradient(135deg, #f59e0b, #fbbf24)',
+        'linear-gradient(135deg, #ef4444, #f87171)',
+        'linear-gradient(135deg, #06b6d4, #22d3ee)',
+        'linear-gradient(135deg, #84cc16, #a3e635)'
+    ];
+
+    function hashString(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash = hash & hash;
+        }
+        return Math.abs(hash);
+    }
+
+    function setTagColors() {
+        document.querySelectorAll('.tag-item[data-tag]').forEach(function(tag) {
+            const tagName = tag.getAttribute('data-tag');
+            const colorIndex = hashString(tagName) % colors.length;
+            tag.style.background = colors[colorIndex];
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setTagColors);
+    } else {
+        setTagColors();
+    }
+})();
+</script>
 <script>
 document.getElementById("year-info").textContent = new Date().getFullYear();
 
