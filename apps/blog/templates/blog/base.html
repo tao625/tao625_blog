@@ -16,7 +16,7 @@
     <link href="{% static 'blog/vendor/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'blog/vendor/font-awesome.min.css' %}" rel="stylesheet">
     <script src="{% static 'blog/js/headroom.min.js'%}"></script>
-    <link href="{% static 'blog/css/base.css' %}?v=2024" rel="stylesheet">
+    <link href="{% static 'blog/css/base.css' %}" rel="stylesheet">
     {% block top-file %}{% endblock %}
 </head>
 <body>
@@ -71,9 +71,24 @@ $(function(){
     headroom.init();
 });
 </script>
-<script src="{% static 'blog/js/base.js'%}?v=2024"></script>
+<script src="{% static 'blog/js/base.js'%}"></script>
 <script>
 document.getElementById("year-info").textContent = new Date().getFullYear();
+
+// 回到顶部按钮显示/隐藏
+window.addEventListener('scroll', function() {
+    var toTop = document.getElementById('to-top');
+    if (window.scrollY > 300) {
+        toTop.classList.add('visible');
+    } else {
+        toTop.classList.remove('visible');
+    }
+});
+
+// 回到顶部点击
+document.getElementById('to-top').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 {% if user.is_authenticated %}
 <script>
