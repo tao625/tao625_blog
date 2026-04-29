@@ -3,13 +3,14 @@
 # Claude Code
 .agents/
 .claude/
+.worktrees/
 
 # IDE
 .idea/
 .trae/
 
-# GitHub
-.github/
+# GitHub ( workflows in .github/workflows/ )
+!.github/
 
 # Skills
 skills/
