@@ -1,47 +1,29 @@
-{% load blog_tags oauth_tags comment_tags %}
-{% load humanize static %}
-<div class="article-list">
-    {% for article in articles %}
-    <article class="article-card">
-        <div class="card-header">
-            <div>
-                {% if article.is_top %}
-                <span class="top-badge">置顶</span>
-                {% endif %}
-                <a href="{{ article.category.get_absolute_url }}" class="article-category">
-                    {{ article.category }}
-                </a>
-            </div>
-            <span class="article-date">
-                <i class="fa fa-calendar mr-1"></i>{{ article.create_date|naturaltime }}
-            </span>
-        </div>
-        <h2 class="article-title">
-            <a href="{{ article.get_absolute_url }}" target="_blank">{{ article.title }}</a>
-        </h2>
-        <p class="article-summary">{{ article.summary|truncatechars:120 }}</p>
-        <div class="article-footer">
-            <div class="article-author">
-                {% get_user_avatar_tag article.author %}
-                <span>{{ article.author }}</span>
-            </div>
-            <div class="article-stats">
-                <span><i class="fa fa-eye"></i> {{ article.views }}</span>
-                <span><i class="fa fa-comments"></i> {% get_comment_count article %}</span>
-            </div>
-        </div>
-        {% if article.tags.all %}
-        <div class="tag-list">
-            {% for tag in article.tags.all %}
-            <a href="{{ tag.get_absolute_url }}" class="tag-item">{{ tag.name }}</a>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </article>
-    {% empty %}
-    <div class="article-card text-center text-muted py-5">
-        <i class="fa fa-inbox fa-3x mb-3"></i>
-        <p>暂时没有文章！</p>
+{% load humanize blog_tags %}
+{% for article in articles %}
+<article class="article-card">
+    <div class="article-header">
+        <a href="{{ article.category.get_absolute_url }}" class="article-category">
+            {{ article.category.name }}
+        </a>
+        <span class="article-date">{{ article.create_date|date:"Y-m-d" }}</span>
     </div>
-    {% endfor %}
-</div>
+    <h2 class="article-title">
+        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+    </h2>
+    <p class="article-summary">{{ article.summary }}</p>
+    <div class="article-tags">
+        {% for tag in article.tags.all %}
+        <a class="tag-item" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="article-footer">
+        <div class="article-author">
+            <span>{{ site_author }}</span>
+        </div>
+        <div class="article-stats">
+            <span><i class="fa fa-eye"></i> {{ article.views }}</span>
+            <span><i class="fa fa-comment"></i> {% get_comment_count article %}</span>
+        </div>
+    </div>
+</article>
+{% endfor %}
